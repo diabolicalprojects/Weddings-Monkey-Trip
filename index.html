@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bodas en la playa by Monkey Trip — Bodas de Destino de Lujo</title>
+  <meta name="description" content="Agencia de bodas de destino de lujo premiada, especializada en México, el Caribe y República Dominicana. Comienza tu viaje con Weddings Monkey Trip." />
+  <meta name="keywords" content="bodas en la playa, bodas de destino, bodas de lujo, cancun, riviera maya, punta cana, vallarta, monkey trip" />
+  <meta property="og:title" content="Bodas en la playa by Monkey Trip" />
+  <meta property="og:description" content="Agencia de bodas de destino de lujo. Vive el paraíso." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVEGACIÓN ========== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" id="nav-logo">
+        <img src="assets/images/logo.jpg" alt="Monkey Trip Logo" class="logo-img" style="height: 50px; width: auto; border-radius: 50%;">
+        <span class="logo-text">Weddings<br><em>Monkey Trip</em></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Navegación principal">
+        <a href="#destinations" class="nav-link">Destinos</a>
+        <a href="#services" class="nav-link">Servicios</a>
+        <a href="#experience" class="nav-link">Experiencia</a>
+        <a href="#testimonials" class="nav-link">Historias</a>
+        <a href="#contact" class="nav-link nav-cta-link">Planea mi Boda</a>
+      </nav>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== SECCIÓN HERO ========== -->
+  <section class="hero" id="home" aria-label="Inicio">
+    <div class="hero-bg">
+      <img src="assets/images/hero.png" alt="Boda de lujo en la playa al atardecer" class="hero-img" id="hero-img" />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Formas orgánicas SVG -->
+    <svg class="hero-organic" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,200 Q360,50 720,200 T1440,200 L1440,900 L0,900 Z" fill="rgba(255,255,255,0.03)" />
+      <path d="M0,400 Q480,250 960,400 T1440,350 L1440,900 L0,900 Z" fill="rgba(26,54,93,0.03)" />
+    </svg>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-reveal>Bodas de Destino Premiadas</p>
+      <h1 class="hero-title" data-reveal>
+        Comienza Tu<br /><em>Viaje</em>
+      </h1>
+      <p class="hero-subtitle" data-reveal>
+        Bodas extraordinarias diseñadas en el paraíso.<br />Cancún · Vallarta · Riviera Nayarit · Punta Cana
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a href="#contact" class="btn btn-rose" id="hero-cta">Planea mi Boda Soñada</a>
+        <a href="#destinations" class="btn btn-ghost">Explorar Destinos</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span>Desliza</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <!-- Barra de estadísticas flotante -->
+    <div class="hero-stats" data-reveal>
+      <div class="stat-item">
+        <span class="stat-number" data-count="500">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Bodas Celebradas</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="12">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Años de Excelencia</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="8">0</span>
+        <span class="stat-label">Destinos de Ensueño</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="98">0</span><span class="stat-plus">%</span>
+        <span class="stat-label">Parejas Satisfechas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DESTINOS BENTO GRID ========== -->
+  <section class="destinations" id="destinations" aria-label="Destinos">
+    <div class="section-container">
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Donde el Amor Florece</p>
+        <h2 class="section-title">Nuestros Destinos</h2>
+        <p class="section-subtitle">Rincones extraordinarios en el paraíso, cada uno con su propia alma e historia</p>
+      </div>
+
+      <div class="bento-grid" id="destinations-grid">
+        <!-- Tarjeta Grande: Cancún -->
+        <article class="bento-card bento-large" id="card-riviera" data-reveal>
+          <div class="card-img-wrap">
+            <img src="assets/images/riviera_maya.png" alt="Boda de lujo en Cancún" class="card-img" loading="lazy" />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <span class="card-tag">Más Popular</span>
+            <h3 class="card-title">Cancún</h3>
+            <p class="card-desc">Playas de arena blanca bañadas por las aguas color turquesa del Caribe. La joya de las bodas de lujo en México.</p>
+            <div class="card-meta">
+              <span class="card-meta-item">🌊 Costa del Caribe</span>
+              <span class="card-meta-item">✈ 10+ Resorts Premium</span>
+            </div>
+            <a href="#contact" class="card-link">Explorar <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <!-- Tarjeta Mediana: Puerto Vallarta -->
+        <article class="bento-card bento-medium" id="card-tulum" data-reveal>
+          <div class="card-img-wrap">
+            <img src="assets/images/tulum.png" alt="Boda de lujo en Puerto Vallarta" class="card-img" loading="lazy" />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Puerto Vallarta</h3>
+            <p class="card-desc">Donde la sierra se encuentra con el mar. Atardeceres dorados y romance colonial.</p>
+            <div class="card-meta">
+              <span class="card-meta-item">🌅 Atardeceres Mágicos</span>
+            </div>
+            <a href="#contact" class="card-link">Explorar <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <!-- Tarjeta Mediana: Punta Cana -->
+        <article class="bento-card bento-medium" id="card-cabos" data-reveal>
+          <div class="card-img-wrap">
+            <img src="assets/images/los_cabos.png" alt="Boda en Punta Cana Hard Rock" class="card-img" loading="lazy" />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Punta Cana</h3>
+            <p class="card-desc">El corazón del Caribe dominicano. Lujo todo incluido y playas interminables.</p>
+            <div class="card-meta">
+              <span class="card-meta-item">🇩🇴 República Dominicana</span>
+            </div>
+            <a href="#contact" class="card-link">Explorar <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <!-- Tarjeta Pequeña: Riviera Nayarit -->
+        <article class="bento-card bento-small" id="card-costa-rica" data-reveal>
+          <div class="card-img-wrap">
+            <img src="assets/images/costa_rica.png" alt="Boda en Riviera Nayarit" class="card-img" loading="lazy" />
+            <div class="card-overlay"></div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Riviera Nayarit</h3>
+            <p class="card-desc">Exclusividad y naturaleza salvaje. Punta Mita y Nuevo Vallarta te esperan.</p>
+            <div class="card-meta">
+              <span class="card-meta-item">🌴 Lujo Tropical</span>
+            </div>
+            <a href="#contact" class="card-link">Explorar <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN SERVICIOS ========== -->
+  <section class="services" id="services" aria-label="Servicios">
+    <div class="services-organic" aria-hidden="true">
+      <svg viewBox="0 0 1440 600" preserveAspectRatio="none">
+        <path d="M0,100 Q300,0 600,100 T1200,80 T1440,100 L1440,600 L0,600 Z" fill="rgba(26,54,93,0.04)" />
+      </svg>
+    </div>
+    <div class="section-container">
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Lo Que Ofrecemos</p>
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-subtitle">Cada detalle cuidado a la perfección, para que puedas estar presente en tu propia historia de amor</p>
+      </div>
+
+      <div class="services-grid" id="services-grid">
+        <div class="service-card" data-reveal>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 14v10l6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Bodas en la Playa</h3>
+          <p class="service-desc">Especialistas en la planeación y diseño de bodas frente al mar, cuidando cada detalle estético y logístico.</p>
+          <ul class="service-list">
+            <li>Búsqueda de locaciones</li>
+            <li>Coordinación de proveedores</li>
+            <li>Gestión del día del evento</li>
+          </ul>
+        </div>
+
+        <div class="service-card featured-service" data-reveal>
+          <div class="service-badge">Más Solicitado</div>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 8L28 18H38L30 24L33 34L24 28L15 34L18 24L10 18H20L24 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Paquetes de Lujo</h3>
+          <p class="service-desc">Paquetes todo incluido que fusionan el lujo de los mejores resorts con experiencias auténticas e inolvidables.</p>
+          <ul class="service-list">
+            <li>Cadenas hoteleras aliadas</li>
+            <li>Diseño floral y decorativo</li>
+            <li>Beneficios exclusivos</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-reveal>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M16 20h16M16 26h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Honey Moons</h3>
+          <p class="service-desc">Planificación personalizada de viajes de novios a destinos paradisíacos con amenidades especiales.</p>
+          <ul class="service-list">
+            <li>Itinerarios románticos</li>
+            <li>Upgrades exclusivos</li>
+            <li>Destinos internacionales</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-reveal>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 10C17.4 10 12 15.4 12 22c0 10 12 20 12 20s12-10 12-20c0-6.6-5.4-12-12-12Z" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="22" r="4" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Tours Pre-Boda</h3>
+          <p class="service-desc">Visitas guiadas a los posibles lugares de tu boda para conocer al equipo local y enamorarte de tu recinto.</p>
+          <ul class="service-list">
+            <li>Preview de hoteles</li>
+            <li>Degustación de menús</li>
+            <li>Inmersión cultural local</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-reveal>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 20a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 38c0-8 7.2-14 16-14s16 6 16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Despedidas de Solter@</h3>
+          <p class="service-desc">Convertimos tu despedida en una celebración de varios días. Coordinación de viajes grupales inolvidables.</p>
+          <ul class="service-list">
+            <li>Logística de grupos</li>
+            <li>Eventos personalizados</li>
+            <li>Actividades exclusivas</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-reveal>
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 36 L24 14 L36 36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 28h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Asesoría "Love Click"</h3>
+          <p class="service-desc">Talleres y citas personalizadas para diseñar cada detalle de tu boda con nuestras WP favoritas.</p>
+          <ul class="service-list">
+            <li>Workshops de diseño</li>
+            <li>Asesoría de presupuesto</li>
+            <li>Curación de momentos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LA EXPERIENCIA MONKEY ========== -->
+  <section class="experience" id="experience" aria-label="La Experiencia Monkey">
+    <div class="experience-container">
+      <div class="experience-left" data-reveal>
+        <div class="experience-collage">
+          <img src="assets/images/experience_collage.png" alt="Momentos de bodas de lujo" class="collage-main" loading="lazy" />
+          <div class="collage-accent collage-accent-1" aria-hidden="true"></div>
+          <div class="collage-accent collage-accent-2" aria-hidden="true"></div>
+          <!-- Insignia flotante -->
+          <div class="experience-badge" aria-hidden="true">
+            <span class="badge-number">500+</span>
+            <span class="badge-label">Historias Contadas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-right" data-reveal>
+        <p class="section-eyebrow">La Experiencia Monkey</p>
+        <h2 class="section-title">¿Por Qué las Parejas<br /><em>Nos Eligen?</em></h2>
+        <p class="experience-text">
+          No solo planeamos bodas. Diseñamos el capítulo más extraordinario de tu vida, donde cada atardecer, cada flor y cada baile se convierten en recuerdos eternos. Nuestro equipo ofrece pasión, precisión y experiencia local.
+        </p>
+        <div class="experience-features">
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">✦</div>
+            <div>
+              <h4 class="feature-title">Servicio de Guante Blanco</h4>
+              <p class="feature-desc">Una WP dedicada te guiará desde la primera llamada hasta el brindis final.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">✦</div>
+            <div>
+              <h4 class="feature-title">Red Local Curada</h4>
+              <p class="feature-desc">Solo los mejores proveedores —floristas, banqueteros, músicos— elegidos por nosotros.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">✦</div>
+            <div>
+              <h4 class="feature-title">Precios Transparentes</h4>
+              <p class="feature-desc">Sin sorpresas. Paquetes claros y honestos adaptados a tu visión y presupuesto.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-marine" id="experience-cta">Comienza a Planear Hoy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIOS ========== -->
+  <section class="testimonials" id="testimonials" aria-label="Testimonios de parejas">
+    <div class="testimonials-organic" aria-hidden="true">
+      <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
+        <path d="M0,200 Q720,50 1440,200 L1440,400 L0,400 Z" fill="rgba(255,51,153,0.04)" />
+      </svg>
+    </div>
+    <div class="section-container">
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Historias de Amor Reales</p>
+        <h2 class="section-title">Lo Que Dicen Ell@s</h2>
+      </div>
+
+      <div class="testimonial-slider" id="testimonial-slider" aria-label="Carrusel de testimonios">
+        <div class="testimonial-track" id="testimonial-track">
+
+          <article class="testimonial-card" role="group" aria-label="Testimonio 1">
+            <div class="testimonial-quote" aria-hidden="true">"</div>
+            <p class="testimonial-text">Weddings Monkey Trip convirtió nuestro sueño en una realidad que superó todo lo imaginado. Nuestra ceremonia en Cancún fue pura magia.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">S&amp;M</div>
+              <div>
+                <p class="author-name">Sofía &amp; Marco</p>
+                <p class="author-detail">Cancún, 2025 · <span class="stars" aria-label="5 estrellas">★★★★★</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" role="group" aria-label="Testimonio 2">
+            <div class="testimonial-quote" aria-hidden="true">"</div>
+            <p class="testimonial-text">Buscábamos algo diferente, romántico e inolvidable. La asesoría personalizada fue clave para que todo saliera perfecto.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">A&amp;J</div>
+              <div>
+                <p class="author-name">Aisha &amp; Jorge</p>
+                <p class="author-detail">Vallarta, 2025 · <span class="stars" aria-label="5 estrellas">★★★★★</span></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card" role="group" aria-label="Testimonio 3">
+            <div class="testimonial-quote" aria-hidden="true">"</div>
+            <p class="testimonial-text">Punta Cana con el Hard Rock como escenario fue brutal. El equipo de Monkey Trip manejó todo sin que nos estresáramos ni un segundo.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">C&amp;R</div>
+              <div>
+                <p class="author-name">Clara &amp; Rafael</p>
+                <p class="author-detail">Punta Cana, 2024 · <span class="stars" aria-label="5 estrellas">★★★★★</span></p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="slider-controls" role="group" aria-label="Controles del carrusel">
+          <button class="slider-btn slider-prev" id="slider-prev" aria-label="Testimonio anterior">&#8592;</button>
+          <div class="slider-dots" id="slider-dots" aria-label="Indicadores de diapositiva"></div>
+          <button class="slider-btn slider-next" id="slider-next" aria-label="Siguiente testimonio">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECCIÓN CONTACTO / CTA ========== -->
+  <section class="contact" id="contact" aria-label="Formulario de contacto">
+    <div class="contact-bg" aria-hidden="true"></div>
+    <div class="contact-container">
+      <div class="contact-left" data-reveal>
+        <p class="section-eyebrow light">Construyamos Algo Juntos</p>
+        <h2 class="section-title light">Tu Historia<br /><em>Comienza Aquí</em></h2>
+        <p class="contact-text">¿List@ para comenzar a planear la boda de tus sueños? Cuéntanos tu visión y nos pondremos en contacto contigo en menos de 24 horas.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <span class="detail-icon" aria-hidden="true">✉</span>
+            <span>hola@weddingsmonkeytrip.com</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="detail-icon" aria-hidden="true">📞</span>
+            <span>+52 (33) MONKEY-W</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="detail-icon" aria-hidden="true">📍</span>
+            <span>Aguascalientes · Guadalajara, México</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right" data-reveal>
+        <form class="contact-form" id="contact-form" novalidate aria-label="Formulario de consulta de boda">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bride-name" class="form-label">Tu Nombre</label>
+              <input type="text" id="bride-name" name="bride-name" class="form-input" placeholder="Nombre completo" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="groom-name" class="form-label">Nombre de tu Pareja</label>
+              <input type="text" id="groom-name" name="groom-name" class="form-input" placeholder="Nombre completo" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="destination" class="form-label">Destino Soñado</label>
+              <select id="destination" name="destination" class="form-input form-select" required>
+                <option value="" disabled selected>Selecciona un destino</option>
+                <option value="cancun">Cancún</option>
+                <option value="vallarta">Puerto Vallarta</option>
+                <option value="nayarit">Riviera Nayarit</option>
+                <option value="puntacana">Punta Cana</option>
+                <option value="otro">¡Ayúdame a elegir!</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="wedding-date" class="form-label">Fecha Ideal</label>
+              <input type="date" id="wedding-date" name="wedding-date" class="form-input" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guests" class="form-label">Número Estimado de Invitados</label>
+            <select id="guests" name="guests" class="form-input form-select">
+              <option value="" disabled selected>Selecciona un rango</option>
+              <option value="intimate">Íntima (Menos de 20)</option>
+              <option value="small">Pequeña (20–50)</option>
+              <option value="medium">Mediana (50–100)</option>
+              <option value="large">Grande (100+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">Cuéntanos tu Visión</label>
+            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Describe la boda de tus sueños..." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-rose btn-full" id="form-submit">Enviar mi Consulta ✦</button>
+          <p class="form-note">Respondemos en menos de 24 horas. Tus datos están seguros con nosotros.</p>
+        </form>
+        <div class="form-success" id="form-success" aria-live="polite" hidden>
+          <div class="success-icon" aria-hidden="true">✦</div>
+          <h3>¡Gracias!</h3>
+          <p>Tu viaje hacia el "sí" comienza ahora. Nos pondremos en contacto contigo pronto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PIE DE PÁGINA ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo footer-logo">
+          <img src="assets/images/logo.jpg" alt="Monkey Trip Logo" class="logo-img" style="height: 40px; width: auto; border-radius: 50%;">
+          <span class="logo-text" style="color: var(--color-pearl);">Weddings<br /><em>Monkey Trip</em></span>
+        </a>
+        <p class="footer-tagline">Donde el paraíso se convierte en tu pasillo.</p>
+        <p class="footer-tagline">"Aquí celebramos el amor con viajes."</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navegación del pie de página">
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Destinos</h4>
+          <a href="#destinations" class="footer-link">Cancún</a>
+          <a href="#destinations" class="footer-link">Puerto Vallarta</a>
+          <a href="#destinations" class="footer-link">Riviera Nayarit</a>
+          <a href="#destinations" class="footer-link">Punta Cana</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Servicios</h4>
+          <a href="#services" class="footer-link">Bodas en Playa</a>
+          <a href="#services" class="footer-link">Lunas de Miel</a>
+          <a href="#services" class="footer-link">Despedidas</a>
+          <a href="#services" class="footer-link">Asesoría "Love Click"</a>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Conectar</h4>
+          <a href="https://www.instagram.com/weddings.monkeytrip/" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://facebook.com/monkeytrip.bodas" class="footer-link" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="#contact" class="footer-link">Contacto</a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Bodas en la playa by Monkey Trip. Todos los derechos reservados. Creado con ♥ para enamorados.</p>
+    </div>
+  </footer>
+
+  <!-- ========== DEMO INDICATOR ========== -->
+  <div class="demo-badge-wrap">
+    <div class="demo-popup">
+      <p>Esta es una <strong>versión demo</strong> del sitio de Weddings Monkey Trip.</p>
+      <a href="https://wa.me/524491245952" target="_blank" rel="noopener noreferrer" class="demo-wa-btn">
+        <span>Más Información</span> ✦
+      </a>
+    </div>
+    <button class="demo-trigger-btn" aria-label="Información de la Demo">
+      <span>DEMO</span>
+    </button>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
