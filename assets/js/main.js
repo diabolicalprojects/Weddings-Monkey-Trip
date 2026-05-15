@@ -5,14 +5,16 @@
 (function () {
   'use strict';
 
+  /* Hero img reference — preloaded via <link rel="preload"> in <head> */
+  var heroImg = document.getElementById('hero-img');
+
   /* ─────────────────────────────────────────
      NAVBAR: scroll-aware + mobile menu
   ───────────────────────────────────────── */
-  const navbar     = document.getElementById('navbar');
-  const hamburger  = document.getElementById('nav-hamburger');
-  const navLinks   = document.getElementById('nav-links');
+  var navbar     = document.getElementById('navbar');
+  var hamburger  = document.getElementById('nav-hamburger');
+  var navLinks   = document.getElementById('nav-links');
 
-  // Scroll handler
   function onScroll () {
     if (window.scrollY > 60) {
       navbar.classList.add('scrolled');
@@ -23,15 +25,13 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Mobile hamburger toggle
   hamburger.addEventListener('click', function () {
-    const isOpen = navLinks.classList.toggle('open');
+    var isOpen = navLinks.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', String(isOpen));
     navbar.classList.toggle('menu-open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Close mobile menu when a link is clicked
   navLinks.querySelectorAll('.nav-link').forEach(function (link) {
     link.addEventListener('click', function () {
       navLinks.classList.remove('open');
@@ -44,14 +44,13 @@
   /* ─────────────────────────────────────────
      INTERSECTION OBSERVER — Reveal Animation
   ───────────────────────────────────────── */
-  const revealElements = document.querySelectorAll('[data-reveal]');
+  var revealElements = document.querySelectorAll('[data-reveal]');
 
-  const revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry, i) {
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        // Stagger children of the same parent
-        const siblings = Array.from(entry.target.parentElement.querySelectorAll('[data-reveal]'));
-        const idx = siblings.indexOf(entry.target);
+        var siblings = Array.from(entry.target.parentElement.querySelectorAll('[data-reveal]'));
+        var idx = siblings.indexOf(entry.target);
         setTimeout(function () {
           entry.target.classList.add('revealed');
         }, idx * 120);
@@ -77,7 +76,7 @@
     function step (timestamp) {
       if (!startTime) startTime = timestamp;
       var progress = Math.min((timestamp - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      var eased = 1 - Math.pow(1 - progress, 3);
       var current = Math.floor(eased * target);
       el.textContent = current;
       if (progress < 1) {
@@ -109,38 +108,109 @@
   }
 
   /* ─────────────────────────────────────────
-     TESTIMONIAL SLIDER
+     TESTIMONIAL SLIDER — Infinite, drag, scroll,
+     pause on hover, functional buttons & dots
   ───────────────────────────────────────── */
-  var track       = document.getElementById('testimonial-track');
-  var prevBtn     = document.getElementById('slider-prev');
-  var nextBtn     = document.getElementById('slider-next');
+  var slider        = document.getElementById('testimonial-slider');
+  var track         = document.getElementById('testimonial-track');
+  var prevBtn       = document.getElementById('slider-prev');
+  var nextBtn       = document.getElementById('slider-next');
   var dotsContainer = document.getElementById('slider-dots');
 
-  if (track && prevBtn && nextBtn) {
-    var cards       = track.querySelectorAll('.testimonial-card');
-    var totalCards  = cards.length;
-    var currentIdx  = 0;
-    var autoTimer   = null;
-    var slidesVisible = getSlidesVisible();
+  if (track && prevBtn && nextBtn && slider) {
+    var originalCards  = Array.from(track.querySelectorAll('.testimonial-card'));
+    var totalOriginal  = originalCards.length;
+    var currentIdx     = 0;
+    var autoTimer      = null;
+    var isPaused       = false;
+    var slidesVisible  = getSlidesVisible();
+
+    // ── Clone cards for infinite loop ──────────────────────────────
+    // Clone a full set before + after
+    originalCards.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+    originalCards.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.insertBefore(clone, track.firstChild);
+    });
+
+    var allCards = Array.from(track.querySelectorAll('.testimonial-card'));
 
     function getSlidesVisible () {
       return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
     }
 
-    function maxIndex () {
-      return Math.max(0, totalCards - slidesVisible);
+    function getCardWidth () {
+      return allCards[0].offsetWidth + 24; // 24px gap
     }
 
-    // Build dots
+    function setOffset (offset, animate) {
+      if (!animate) track.classList.add('no-transition');
+      track.style.transform = 'translateX(-' + offset + 'px)';
+      if (!animate) {
+        // Force reflow then re-enable transition
+        track.offsetHeight;
+        track.classList.remove('no-transition');
+      }
+    }
+
+    // Start position = after the prepended clone set
+    var realOffset = totalOriginal; // index in allCards
+
+    function goToReal (idx, animate) {
+      if (animate === undefined) animate = true;
+      realOffset = totalOriginal + idx;
+      setOffset(realOffset * getCardWidth(), animate);
+      currentIdx = ((idx % totalOriginal) + totalOriginal) % totalOriginal;
+      updateDots();
+    }
+
+    // After transition ends, silently jump if we're in clone territory
+    track.addEventListener('transitionend', function () {
+      var totalAll = allCards.length;
+      if (realOffset >= totalOriginal * 2) {
+        realOffset -= totalOriginal;
+        setOffset(realOffset * getCardWidth(), false);
+      } else if (realOffset < totalOriginal) {
+        realOffset += totalOriginal;
+        setOffset(realOffset * getCardWidth(), false);
+      }
+    });
+
+    function next () {
+      realOffset++;
+      currentIdx = (currentIdx + 1) % totalOriginal;
+      setOffset(realOffset * getCardWidth(), true);
+      updateDots();
+    }
+
+    function prev () {
+      realOffset--;
+      currentIdx = (currentIdx - 1 + totalOriginal) % totalOriginal;
+      setOffset(realOffset * getCardWidth(), true);
+      updateDots();
+    }
+
+    // ── Dots ──────────────────────────────────────────────────────
     function buildDots () {
       dotsContainer.innerHTML = '';
-      var count = maxIndex() + 1;
-      for (var i = 0; i < count; i++) {
+      for (var i = 0; i < totalOriginal; i++) {
         (function (idx) {
           var dot = document.createElement('button');
           dot.className = 'dot' + (idx === currentIdx ? ' active' : '');
-          dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
-          dot.addEventListener('click', function () { goTo(idx); });
+          dot.setAttribute('aria-label', 'Ir al testimonio ' + (idx + 1));
+          dot.addEventListener('click', function () {
+            var diff = idx - currentIdx;
+            realOffset += diff;
+            currentIdx = idx;
+            setOffset(realOffset * getCardWidth(), true);
+            updateDots();
+            resetAuto();
+          });
           dotsContainer.appendChild(dot);
         })(i);
       }
@@ -153,26 +223,71 @@
       });
     }
 
-    function goTo (idx) {
-      currentIdx = Math.max(0, Math.min(idx, maxIndex()));
-      var cardWidth = cards[0].offsetWidth + 24; // gap 24px
-      track.style.transform = 'translateX(-' + (currentIdx * cardWidth) + 'px)';
-      updateDots();
-    }
-
-    function next () { goTo(currentIdx >= maxIndex() ? 0 : currentIdx + 1); }
-    function prev () { goTo(currentIdx <= 0 ? maxIndex() : currentIdx - 1); }
-
+    // ── Buttons ───────────────────────────────────────────────────
     nextBtn.addEventListener('click', function () { next(); resetAuto(); });
     prevBtn.addEventListener('click', function () { prev(); resetAuto(); });
 
-    function startAuto ()  { autoTimer = setInterval(next, 5000); }
-    function resetAuto ()  { clearInterval(autoTimer); startAuto(); }
+    // ── Autoplay ──────────────────────────────────────────────────
+    function startAuto () {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function () {
+        if (!isPaused) next();
+      }, 5000);
+    }
 
-    // Touch / swipe support
+    function resetAuto () {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    // ── Pause on hover ────────────────────────────────────────────
+    slider.addEventListener('mouseenter', function () { isPaused = true; });
+    slider.addEventListener('mouseleave', function () { isPaused = false; });
+
+    // ── Mouse drag (desktop) ───────────────────────────────────────
+    var isDragging   = false;
+    var dragStartX   = 0;
+    var dragCurrentX = 0;
+    var baseOffset   = 0;
+
+    slider.addEventListener('mousedown', function (e) {
+      if (e.button !== 0) return;
+      isDragging  = true;
+      dragStartX  = e.clientX;
+      baseOffset  = realOffset * getCardWidth();
+      track.classList.add('no-transition');
+      slider.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      dragCurrentX = e.clientX;
+      var diff = dragStartX - dragCurrentX;
+      track.style.transform = 'translateX(-' + (baseOffset + diff) + 'px)';
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.classList.remove('is-dragging');
+      track.classList.remove('no-transition');
+
+      var diff = dragStartX - e.clientX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) next();
+        else prev();
+      } else {
+        // Snap back
+        setOffset(realOffset * getCardWidth(), true);
+      }
+      resetAuto();
+    });
+
+    // ── Touch / swipe support ─────────────────────────────────────
     var touchStartX = 0;
     track.addEventListener('touchstart', function (e) {
       touchStartX = e.changedTouches[0].screenX;
+      isPaused = true;
     }, { passive: true });
 
     track.addEventListener('touchend', function (e) {
@@ -181,24 +296,40 @@
         diff > 0 ? next() : prev();
         resetAuto();
       }
+      isPaused = false;
     }, { passive: true });
 
-    // Keyboard support
+    // ── Horizontal scroll wheel (laptop trackpad) ─────────────────
+    var scrollAccum = 0;
+    slider.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        // Horizontal scroll gesture
+        e.preventDefault();
+        scrollAccum += e.deltaX;
+        if (Math.abs(scrollAccum) > 80) {
+          if (scrollAccum > 0) next();
+          else prev();
+          scrollAccum = 0;
+          resetAuto();
+        }
+      }
+    }, { passive: false });
+
+    // ── Keyboard support ──────────────────────────────────────────
     document.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft')  { prev(); resetAuto(); }
       if (e.key === 'ArrowRight') { next(); resetAuto(); }
     });
 
-    // Responsive resize
+    // ── Responsive resize ─────────────────────────────────────────
     window.addEventListener('resize', function () {
       slidesVisible = getSlidesVisible();
-      if (currentIdx > maxIndex()) currentIdx = maxIndex();
-      buildDots();
-      goTo(currentIdx);
+      goToReal(currentIdx, false);
     });
 
+    // ── Init ──────────────────────────────────────────────────────
     buildDots();
-    goTo(0);
+    goToReal(0, false);
     startAuto();
   }
 
@@ -213,7 +344,6 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // Simple validation
       var valid = true;
       var required = form.querySelectorAll('[required]');
 
@@ -225,7 +355,6 @@
         }
       });
 
-      // Email format check
       var emailField = document.getElementById('email');
       if (emailField && emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
         emailField.style.borderColor = 'rgba(255,100,100,0.7)';
@@ -233,14 +362,12 @@
       }
 
       if (!valid) {
-        // Shake the button
         submitBtn.style.animation = 'none';
-        submitBtn.offsetHeight; // reflow
+        submitBtn.offsetHeight;
         submitBtn.style.animation = 'shake 0.4s ease';
         return;
       }
 
-      // Simulate sending
       submitBtn.textContent = 'Enviando…';
       submitBtn.disabled = true;
 
@@ -252,7 +379,6 @@
     });
   }
 
-  // Add shake keyframes dynamically
   var shakeStyle = document.createElement('style');
   shakeStyle.textContent = `
     @keyframes shake {
@@ -265,17 +391,7 @@
   `;
   document.head.appendChild(shakeStyle);
 
-  /* ─────────────────────────────────────────
-     PARALLAX — Subtle Hero Image Parallax
-  ───────────────────────────────────────── */
-  var heroImg = document.getElementById('hero-img');
-
-  if (heroImg && window.innerWidth > 768) {
-    window.addEventListener('scroll', function () {
-      var scrollY = window.scrollY;
-      heroImg.style.transform = 'scale(1.05) translateY(' + (scrollY * 0.25) + 'px)';
-    }, { passive: true });
-  }
+  /* Parallax handled natively by CSS background-attachment: fixed */
 
   /* ─────────────────────────────────────────
      MAGNETIC BUTTONS — Premium hover effect
@@ -296,7 +412,7 @@
   /* ─────────────────────────────────────────
      SMOOTH ACTIVE NAV LINK — scroll spy
   ───────────────────────────────────────── */
-  var sections = document.querySelectorAll('section[id]');
+  var sections   = document.querySelectorAll('section[id]');
   var navAnchors = document.querySelectorAll('.nav-link:not(.nav-cta-link)');
 
   var spyObserver = new IntersectionObserver(function (entries) {
@@ -347,7 +463,7 @@
       'pointer-events:none',
       'z-index:9999',
       'border-radius:50%',
-      'background:radial-gradient(circle, rgba(0,164,166,0.06) 0%, transparent 70%)',
+      'background:radial-gradient(circle, rgba(255,51,153,0.05) 0%, transparent 70%)',
       'transform:translate(-50%,-50%)',
       'transition:opacity 0.3s',
       'will-change:transform'
